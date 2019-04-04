@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="utf-8">
-  <title></title>
+  <title>Lyceum exams</title>
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -23,7 +23,78 @@
   <![endif]-->
 
   <!-- Add your site or application content here -->
-  <p>Hello world! This is HTML5 Boilerplate.</p>
+  <nav>
+    <a href="">Главная</a>
+    <a href="">Списки</a>
+    <a href="">Загрузка начальных данных</a>
+  </nav>
+  <div class="flex=container">
+    <div>
+      <div class=flex-item>
+        <div>
+          <button class="btn-blue">Генерировать</button>
+          <button class="btn-green">Сохранить изменения</button>
+        </div>
+        <div>
+          <label for="SavingDate">Дата последнего сохранения</label>
+          <label id="SavingDate"></label>
+        </div>
+        <div>
+          <label class=bold>Загрузка рассадки:</label>
+          <button class=btn-blue>1 экзамен</button>
+          <button class=btn-blue>2 экзамен</button>
+        </div>
+      </div>
+    </div>
+    <div class="flex-item">
+      <label for="search">Поиск</label>
+      <input type="text" id="search">
+      <label for="building">Корпус</label>
+      <input type="text" id="building">
+      <label for="profile">Профиль</label>
+      <select name="Profile" id="profile">
+
+      </select>
+      <label for="audience">Аудитория</label>
+      <select name="Audience" id="audience">
+
+      </select>
+    </div>
+
+    <div class=flex-item>
+        <table>
+          <thead>
+            <tr>
+              <th>№</th>
+              <th>ФИО</th>
+              <th>Каб.</th>
+              <th>Профиль</th>
+              <th>Бел</th>
+            </tr>
+            <tbody>
+
+            </tbody>
+        </thead>
+        </table>
+    </div>
+
+    <div class=flex-item>
+        <table>
+          <thead>
+            <tr>
+              <th>№</th>
+              <th>Количество</th>
+              <th>Max</th>
+              <th>Бел</th>
+            </tr>
+            <tbody>
+
+            </tbody>
+        </thead>
+        </table>
+    </div>
+  </div>
+
   <script src="js/vendor/modernizr-3.7.1.min.js"></script>
   <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
   <script>window.jQuery || document.write('<script src="js/vendor/jquery-3.3.1.min.js"><\/script>')</script>

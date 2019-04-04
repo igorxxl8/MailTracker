@@ -102,7 +102,42 @@ textarea {
    Author's custom styles
    ========================================================================== */
 
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
 
+button {
+    padding: 10px;
+    color: white;
+    border-radius: 3px
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.btn-blue {
+    border-color: 007bff;
+    background-color: #007bff; 
+}
+
+.btn-green {
+    background-color: #28a745;
+}
+
+.flex-container {
+    display: flex;
+}
+
+.flex-item {
+    text-align: center;
+    font-size: 1em;
+    padding: 1.2em;
+}
+
+.flex-center {
+    align-items: center;
+}
 
 
 
