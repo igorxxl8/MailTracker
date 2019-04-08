@@ -111,10 +111,15 @@ button {
     color: white;
     border-radius: .25rem;
     border: 0;
+    outline: none;
 }
 
 button:hover {
     cursor: pointer;
+}
+
+input, select {
+    display: block;
 }
 
 .bold {
@@ -130,7 +135,7 @@ button:hover {
     background-color: #28a745;
 }
 
-.main-header{
+.main-header {
     display: flex;
     align-items: center;
     justify-content: space-around;
@@ -140,15 +145,12 @@ button:hover {
 
 .main-nav ul {
     text-align: center;
+    padding: 0px;
 }
 
 .main-nav li {
     margin: .5em;
     display: inline;
-}
-
-.right {
-    float: right;
 }
 
 .main-nav a{
@@ -171,8 +173,8 @@ button:hover {
     margin-bottom: 0 10px 10px 10px;
 }
 
-.column-layout .col {
-    box-sizing: border-box;
+.col-eq {
+    flex: 1;
 }
 
 
