@@ -18,50 +18,72 @@
 </head>
 
 <body>
-  <!--[if IE]>
-    <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
-  <![endif]-->
+  <header class="main-header">
+    <nav class="main-nav">
+      <ul class="main-nav-list">
+        <li>
+            <a href="#">Главная</a>
+        </li>
 
-  <!-- Add your site or application content here -->
-  <nav>
-    <a href="">Главная</a>
-    <a href="">Списки</a>
-    <a href="">Загрузка начальных данных</a>
-  </nav>
-  <div class="flex=container">
-    <div>
-      <div class=flex-item>
-        <div>
-          <button class="btn-blue">Генерировать</button>
-          <button class="btn-green">Сохранить изменения</button>
-        </div>
-        <div>
-          <label for="SavingDate">Дата последнего сохранения</label>
-          <label id="SavingDate"></label>
-        </div>
-        <div>
-          <label class=bold>Загрузка рассадки:</label>
-          <button class=btn-blue>1 экзамен</button>
-          <button class=btn-blue>2 экзамен</button>
-        </div>
+        <li>
+          <a href="#">Списки</a>
+        </li>
+
+        <li>
+          <a href="#">Загрузка начальных данных</a>
+        </li>
+      </ul>
+    </nav>
+    </header>
+
+  <section class="container">
+    <div class="row column-layout">
+      <div class="col">
+        <button class="btn-blue">Генерировать</button>
+        <button class="btn-green">Сохранить изменения</button>
+        <p>Дата последнего сохранения</p>
+      </div>
+
+      <div class="col">
+        <label class="bold">Загрузка рассадки:</label>
+        <button class=btn-blue>1 экзамен</button>
+        <button class=btn-blue>2 экзамен</button>
       </div>
     </div>
-    <div class="flex-item">
-      <label for="search">Поиск</label>
-      <input type="text" id="search">
-      <label for="building">Корпус</label>
-      <input type="text" id="building">
-      <label for="profile">Профиль</label>
-      <select name="Profile" id="profile">
 
-      </select>
-      <label for="audience">Аудитория</label>
-      <select name="Audience" id="audience">
-
-      </select>
+    <div class="row column-layout">
+      <div class="col">
+        <form>
+          <label for="search">Поиск</label>
+          <input type="text" id="search">
+        </form>
+      </div>
+      
+      <div class="col">
+        <form>
+          <label for="building">Корпус</label>
+          <input type="text" id="building">
+        </form>
+      </div>
+      <div class="col">
+        <form>
+          <label for="profile">Профиль</label>
+          <select name="Profile" id="profile">
+        </select>
+        </form>
+      </div>
+      
+      <div class="col">
+        <form>
+          <label for="audience">Аудитория</label>
+          <select name="Audience" id="audience">
+          </select>
+        </form>
+      </div>
     </div>
 
-    <div class=flex-item>
+    <div class="row column-layout">
+      <div>
         <table>
           <thead>
             <tr>
@@ -76,9 +98,9 @@
             </tbody>
         </thead>
         </table>
-    </div>
+      </div>
 
-    <div class=flex-item>
+      <div>
         <table>
           <thead>
             <tr>
@@ -88,12 +110,17 @@
               <th>Бел</th>
             </tr>
             <tbody>
-
+  
             </tbody>
         </thead>
-        </table>
+      </table>
+      </div>
     </div>
-  </div>
+</section>
+
+  <footer>
+
+  </footer>
 
   <script src="js/vendor/modernizr-3.7.1.min.js"></script>
   <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>

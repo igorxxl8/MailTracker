@@ -109,7 +109,12 @@ body {
 button {
     padding: 10px;
     color: white;
-    border-radius: 3px
+    border-radius: .25rem;
+    border: 0;
+}
+
+button:hover {
+    cursor: pointer;
 }
 
 .bold {
@@ -117,30 +122,58 @@ button {
 }
 
 .btn-blue {
-    border-color: 007bff;
     background-color: #007bff; 
+    border-color: #007bff;
 }
 
 .btn-green {
     background-color: #28a745;
 }
 
-.flex-container {
+.main-header{
     display: flex;
-}
-
-.flex-item {
-    text-align: center;
-    font-size: 1em;
-    padding: 1.2em;
-}
-
-.flex-center {
     align-items: center;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    background: #f8f9fa;
 }
 
+.main-nav ul {
+    text-align: center;
+}
 
+.main-nav li {
+    margin: .5em;
+    display: inline;
+}
 
+.right {
+    float: right;
+}
+
+.main-nav a{
+    display: inline-block;
+    text-decoration: none;
+    color: grey;
+}
+
+.container {
+    margin: 0 auto;
+    max-width: 1100px;
+}
+
+.column-layout {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.row {
+    margin-bottom: 0 10px 10px 10px;
+}
+
+.column-layout .col {
+    box-sizing: border-box;
+}
 
 
 
