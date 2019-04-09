@@ -39,15 +39,23 @@
   <section class="container">
     <div class="row column-layout">
       <div class="col-eq">
-        <button class="btn-blue">Генерировать</button>
-        <button class="btn-green">Сохранить изменения</button>
-        <p>Дата последнего сохранения</p>
+        <form>
+          <button class="btn-blue">Генерировать</button>
+          <button class="btn-green">Сохранить изменения</button>
+        </form>
+        <p>Дата последнего сохранения:</p>
       </div>
 
-      <div class="col-eq">
-        <label class="bold">Загрузка рассадки:</label>
-        <button class=btn-blue>1 экзамен</button>
-        <button class=btn-blue>2 экзамен</button>
+      <div class="col-eq text-right">
+        <form>
+          <label>
+            <b>
+              Загрузка рассадки:
+            </b>
+          </label>
+          <button class=btn-blue>1 экзамен</button>
+          <button class=btn-blue>2 экзамен</button>
+        </form>
       </div>
     </div>
 
@@ -55,35 +63,37 @@
       <div class="col-eq">
         <form>
           <label for="search">Поиск</label>
-          <input type="text" id="search">
+          <input class="form-element" type="text" id="search">
         </form>
       </div>
       
       <div class="col-eq">
         <form>
           <label for="building">Корпус</label>
-          <input type="text" id="building">
+          <input class="form-element" type="text" id="building">
         </form>
       </div>
       <div class="col-eq">
         <form>
           <label for="profile">Профиль</label>
-          <select name="Profile" id="profile">
-        </select>
+          <select class="form-element" name="Profile" id="profile">
+              <option value="Все">Все</option>
+          </select>
         </form>
       </div>
       
       <div class="col-eq">
         <form>
           <label for="audience">Аудитория</label>
-          <select name="Audience" id="audience">
+          <select class="form-element" name="Audience" id="audience">
+            <option value="Все">Все</option>
           </select>
         </form>
       </div>
     </div>
 
     <div class="row column-layout">
-      <div>
+      <div class="col-2-3">
         <table>
           <thead>
             <tr>
@@ -100,7 +110,7 @@
         </table>
       </div>
 
-      <div>
+      <div class="col-1-3">
         <table>
           <thead>
             <tr>
