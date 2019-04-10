@@ -167,7 +167,6 @@ tr {
 
 .btn-blue {
     background-color: #007bff; 
-    border-color: #007bff;
 }
 
 .btn-green {
@@ -223,7 +222,6 @@ tr {
 }
 
 @media (min-width: 600px){
-
     .container {
         width: 600px;
     }
