@@ -215,7 +215,7 @@
     var corpusSelector = document.getElementById("building");
     var profileSelector = document.getElementById("profile");
     var audienceSelector = document.getElementById("audience");
-
+    var selectedCorps;
     fillSelector(corpusSelector, data, "");
     corpusSelector.addEventListener(
         'change',
@@ -224,8 +224,8 @@
             if (corpusSelector.options[0].text == ""){
                 corpusSelector.options[0] = null;
             }
-            
-            fillSelector(profileSelector, data[event.target.value].Profiles, "Все")
+            selectedCorps = data[event.target.value];
+            fillSelector(profileSelector, selectedCorps.Profiles, "Все")
             profileSelector.dispatchEvent(new Event('change'))
         }
     );
@@ -233,17 +233,16 @@
         'change',
         event => 
         {
-            var corpsIndex = corpusSelector.selectedIndex;
             var index = event.target.value;
+            var audiences = [];
             if (index == Number.MAX_SAFE_INTEGER){
-                var audiences = [];
-                for (item of data[corpsIndex].Profiles){
+                for (item of selectedCorps.Profiles){
                     audiences = audiences.concat(item.Audiences);
                 }
-                fillSelector(audienceSelector, audiences, "Все")
             } else{
-                fillSelector(audienceSelector, data[corpsIndex].Profiles[index].Audiences, "Все")
+                audiences = selectedCorps.Profiles[index].Audiences;
             }
+            fillSelector(audienceSelector, audiences, "Все")
         }
     );
     
