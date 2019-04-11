@@ -212,20 +212,20 @@
             ]
         }
     ];
-    var buildingSelector = document.getElementById("building");
+    var corpusSelector = document.getElementById("building");
     var profileSelector = document.getElementById("profile");
     var audienceSelector = document.getElementById("audience");
-    fillSelector(buildingSelector, data, "");
-    buildingSelector.addEventListener(
+
+    fillSelector(corpusSelector, data, "");
+    corpusSelector.addEventListener(
         'change',
         event => 
         {
-            if (buildingSelector.options[0].text == ""){
-                buildingSelector.options[0] = null;
+            if (corpusSelector.options[0].text == ""){
+                corpusSelector.options[0] = null;
             }
-
-            var index = event.target.value;
-            fillSelector(profileSelector, data[index].Profiles, "Все")
+            
+            fillSelector(profileSelector, data[event.target.value].Profiles, "Все")
             profileSelector.dispatchEvent(new Event('change'))
         }
     );
@@ -233,7 +233,7 @@
         'change',
         event => 
         {
-            var corpsIndex = buildingSelector.selectedIndex;
+            var corpsIndex = corpusSelector.selectedIndex;
             var index = event.target.value;
             if (index == Number.MAX_SAFE_INTEGER){
                 var audiences = [];
@@ -258,6 +258,7 @@
             option.value = Number.MAX_SAFE_INTEGER;
             selector.add(option);
         }
+
         for (index in data){
             var option = new Option();
             option.text = data[index].Name;
