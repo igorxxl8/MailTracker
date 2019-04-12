@@ -246,6 +246,160 @@
         }
     );
     
+    var students = [
+        {
+            "FirstName": "Василий",
+            "LastName": "Васильев",
+            "MiddleName": "Васильевич",
+            "Audience": "116",
+            "Profile": "филологический",
+            "Bel": false
+        },
+        {
+            "FirstName": "Иван",
+            "LastName": "Иванов",
+            "MiddleName": "Иванович",
+            "Audience": "433",
+            "Profile": "математический",
+            "Bel": true
+        },
+        {
+            "FirstName": "Петр",
+            "LastName": "Иванов",
+            "MiddleName": "Иванович",
+            "Audience": "433",
+            "Profile": "математический",
+            "Bel": true
+        },
+        {
+            "FirstName": "Александров",
+            "LastName": "Александр",
+            "MiddleName": "Александрович",
+            "Audience": "517",
+            "Profile": "математический",
+            "Bel": false
+        }
+    ]
+    var studentsTable = document.getElementById("students");
+    var thName = document.getElementById("thName");
+    var thAudience = document.getElementById("thAudience");
+    var thProfile = document.getElementById("thProfile");
+    var thBel = document.getElementById("thBel");
+    fillStudentsTable();
+    thName.addEventListener(
+        'click',
+        ()  => {
+            sortTable(studentsTable, 1);
+            appendArrow();
+        }
+    );
+    thAudience.addEventListener(
+        'click',
+        ()  => {
+            sortTable(studentsTable, 2);
+            appendArrow();
+        }
+    );
+    thProfile.addEventListener(
+        'click',
+        ()  => {
+            sortTable(studentsTable, 3);
+            appendArrow();
+        }
+    );
+    thBel.addEventListener(
+        'click',
+        () => {
+            sortTable(studentsTable, 4);
+            appendArrow();
+        }
+    );
+
+    function appendArrow(){
+        var arrowUp = document.getElementsByClassName('arrow-up');
+        var arrowDown= document.getElementsByClassName('arrow-down');
+        for (item of arrowUp){
+            item.removeAttribute('class');
+        }
+        for (item of arrowDown){
+            item.removeAttribute('class');
+        }
+
+        var arrowStyle; 
+        if (asc)
+            arrowStyle = 'arrow-up';
+        else
+            arrowStyle = 'arrow-down';
+        event.target.className = arrowStyle;
+    }
+
+    function sortTable(table, n) {
+        var rows, canContinueSwitch, i, x, y, shouldSwitch, switchCount = 0;
+        canContinueSwitch = true;
+        asc = true; 
+        while (canContinueSwitch) {
+          canContinueSwitch = false;
+          rows = table.rows;
+          for (i = 1; i < (rows.length - 1); i++) {
+            shouldSwitch = false;
+            x = rows[i].getElementsByTagName("TD")[n];
+            y = rows[i + 1].getElementsByTagName("TD")[n];
+            if (asc) {
+                if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+                    shouldSwitch = true;
+                    break;
+                }
+            } else if (!asc) {
+                if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+                    shouldSwitch = true;
+                    break;
+                }
+            }
+        }
+        if (shouldSwitch) {
+            var rinum = rows[i].getElementsByTagName("TD")[0];
+            var riinum = rows[i + 1].getElementsByTagName("TD")[0];
+            var temp = rinum.innerHTML;
+            rinum.innerHTML = riinum.innerHTML;
+            riinum.innerHTML = temp;
+            rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+            canContinueSwitch = true;
+            switchCount ++; 
+          } else {
+            if (switchCount == 0 && asc) {
+              asc = false;
+              canContinueSwitch = true;
+            }
+          }
+        }
+      }
+
+    function fillStudentsTable(){
+        var body = document.createElement('tbody');
+        for (index in students){
+            var row = document.createElement('tr');
+            row.draggable = true;
+            var col1 = document.createElement('td');
+            var col2 = document.createElement('td');
+            var col3 = document.createElement('td');
+            var col4 = document.createElement('td');
+            var col5 = document.createElement('td');
+            var student = students[index];
+            col2.appendChild(document.createTextNode(student.LastName + " " + student.FirstName + " " + student.MiddleName));
+            col3.appendChild(document.createTextNode(student.Audience));
+            col4.appendChild(document.createTextNode(student.Profile));
+            col5.appendChild(document.createTextNode(student.Bel));
+            col1.appendChild(document.createTextNode(++index));
+            row.appendChild(col1);
+            row.appendChild(col2);
+            row.appendChild(col3);
+            row.appendChild(col4);
+            row.appendChild(col5);
+            body.appendChild(row);
+        }
+        studentsTable.replaceChild(body, studentsTable.tBodies[0])
+    }
+
     function fillSelector(selector, data, first = null){
         for (index in selector.options){
             selector.options[index] = null;
@@ -266,3 +420,5 @@
         }
     }
 })();
+
+
