@@ -264,16 +264,16 @@
             "Bel": true
         },
         {
-            "FirstName": "Петр",
+            "FirstName": "Иван",
             "LastName": "Иванов",
-            "MiddleName": "Иванович",
-            "Audience": "433",
+            "MiddleName": "Петрович",
+            "Audience": "43",
             "Profile": "математический",
             "Bel": true
         },
         {
-            "FirstName": "Александров",
-            "LastName": "Александр",
+            "FirstName": "Александр",
+            "LastName": "Александров",
             "MiddleName": "Александрович",
             "Audience": "517",
             "Profile": "математический",
