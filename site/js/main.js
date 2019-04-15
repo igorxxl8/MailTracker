@@ -1,20 +1,22 @@
 (() => {
-    var corpusSelector = document.getElementById("building");
+    const corpsesURL = 'https://lyceumexams.herokuapp.com/api/corpses'
+
+    var corpsesSelector = document.getElementById("building");
     var placeSelector = document.getElementById("profile");
     var audienceSelector = document.getElementById("audience");
-    fetch('https://lyceumexams.herokuapp.com/api/corpses')
+    fetch(corpsesURL)
         .then(response => {
             return response.json();
         })
         .then(data => {
-            fillSelector(corpusSelector, data, "name", "");
+            fillSelector(corpsesSelector, data, "name", "");
             var selectedCorps;
-            corpusSelector.addEventListener(
+            corpsesSelector.addEventListener(
                 'change',
                 event => 
                 {
-                    if (corpusSelector.options[0].text == ""){
-                        corpusSelector.options[0] = null;
+                    if (corpsesSelector.options[0].text == ""){
+                        corpsesSelector.options[0] = null;
                     }
                     selectedCorps = data[event.target.value];
                     fillSelector(placeSelector, selectedCorps.places, "code", "Все")
