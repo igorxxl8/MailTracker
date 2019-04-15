@@ -1,211 +1,211 @@
 (() => {
     var data = [
         {
-            "Name": "Главный корпус БГУ",
-            "Profiles": [
+            "name": "Главный корпус БГУ",
+            "places": [
                 {
-                    "Name": "МАТ",
-                    "Audiences": [
+                    "name": "МАТ",
+                    "audience": [
                         {
-                            "Name": "517" 
+                            "name": "517" 
                         },
                         {
-                            "Name": "517" 
+                            "name": "517" 
                         },
                         {
-                            "Name": "513" 
+                            "name": "513" 
                         },
                         {
-                            "Name": "606" 
+                            "name": "606" 
                         },
                         {
-                            "Name": "609" 
+                            "name": "609" 
                         },
                         {
-                            "Name": "433" 
+                            "name": "433" 
                         },
                         {
-                            "Name": "521" 
+                            "name": "521" 
                         }
                     ]
                 }
             ], 
         },
         {
-            "Name": "Физический факультет БГУ",
-            "Profiles": [
+            "name": "Физический факультет БГУ",
+            "places": [
                 {
-                    "Name": "ФИЗ",
-                    "Audiences": [
+                    "name": "ФИЗ",
+                    "audience": [
                         {
-                            "Name": "319" 
+                            "name": "319" 
                         },
                         {
-                            "Name": "319" 
+                            "name": "319" 
                         },
                         {
-                            "Name": "213" 
+                            "name": "213" 
                         },
                         {
-                            "Name": "211" 
+                            "name": "211" 
                         },
                         {
-                            "Name": "321" 
+                            "name": "321" 
                         },
                         {
-                            "Name": "418" 
+                            "name": "418" 
                         },
                         {
-                            "Name": "220" 
+                            "name": "220" 
                         }
                     ]
                 }
             ]
         }, 
         {
-            "Name": "Географический факультет БГУ",
-            "Profiles": [
+            "name": "Географический факультет БГУ",
+            "places": [
                 {
-                    "Name": "Фил (РУС)",
-                    "Audiences": [
+                    "name": "Фил (РУС)",
+                    "audience": [
                         {
-                            "Name": "115" 
+                            "name": "115" 
                         },
                         {
-                            "Name": "312" 
+                            "name": "312" 
                         }
                     ]
                 },
                 {
-                    "Name": "Фил (АНГ)",
-                    "Audiences": [
+                    "name": "Фил (АНГ)",
+                    "audience": [
                         {
-                            "Name": "116" 
+                            "name": "116" 
                         },
                         {
-                            "Name": "212" 
+                            "name": "212" 
                         },
                         {
-                            "Name": "311" 
+                            "name": "311" 
                         }
                     ]
                 }
             ]
         }, 
         {
-            "Name": "Химический факультет БГУ",
-            "Profiles": [
+            "name": "Химический факультет БГУ",
+            "places": [
                 {
-                    "Name": "ХИМ",
-                    "Audiences": [
+                    "name": "ХИМ",
+                    "audience": [
                         {
-                            "Name": "713" 
+                            "name": "713" 
                         },
                         {
-                            "Name": "713" 
+                            "name": "713" 
                         },
                         {
-                            "Name": "201" 
+                            "name": "201" 
                         },
                         {
-                            "Name": "301" 
+                            "name": "301" 
                         },
                         {
-                            "Name": "601" 
+                            "name": "601" 
                         }
                     ]
                 }, 
                 {
-                    "Name": "ИМ",
-                    "Audiences": [
+                    "name": "ИМ",
+                    "audience": [
                         {
-                            "Name": "705" 
+                            "name": "705" 
                         },
                         {
-                            "Name": "705" 
+                            "name": "705" 
                         },
                         {
-                            "Name": "706" 
+                            "name": "706" 
                         },
                         {
-                            "Name": "707a" 
+                            "name": "707a" 
                         },
                         {
-                            "Name": "708" 
+                            "name": "708" 
                         },
                         {
-                            "Name": "709" 
+                            "name": "709" 
                         },
                         {
-                            "Name": "501" 
+                            "name": "501" 
                         },
                         {
-                            "Name": "507" 
+                            "name": "507" 
                         },
                         {
-                            "Name": "701" 
+                            "name": "701" 
                         }
                     ]
                 }
             ]
         }, 
         {
-            "Name": "Юридический факультет БГУ",
-            "Profiles": [
+            "name": "Юридический факультет БГУ",
+            "places": [
                 {
-                    "Name": "БИО",
-                    "Audiences": [
+                    "name": "БИО",
+                    "audience": [
                         {
-                            "Name": "308" 
+                            "name": "308" 
                         },
                         {
-                            "Name": "308" 
+                            "name": "308" 
                         },
                         {
-                            "Name": "511" 
+                            "name": "511" 
                         },
                         {
-                            "Name": "214" 
+                            "name": "214" 
                         },
                         {
-                            "Name": "418" 
+                            "name": "418" 
                         },
                         {
-                            "Name": "309" 
+                            "name": "309" 
                         },
                         {
-                            "Name": "513" 
+                            "name": "513" 
                         },
                         {
-                            "Name": "610" 
+                            "name": "610" 
                         },
                         {
-                            "Name": "609" 
+                            "name": "609" 
                         }
                     ]
                 }
             ]
         }, 
         {
-            "Name": "Факультет международных отношений БГУ",
-            "Profiles": [
+            "name": "Факультет международных отношений БГУ",
+            "places": [
                 {
-                    "Name": "ИСТ",
-                    "Audiences": [
+                    "name": "ИСТ",
+                    "audience": [
                         {
-                            "Name": "1202" 
+                            "name": "1202" 
                         },
                         {
-                            "Name": "1202" 
+                            "name": "1202" 
                         },
                         {
-                            "Name": "1201" 
+                            "name": "1201" 
                         },
                         {
-                            "Name": "1301" 
+                            "name": "1301" 
                         },
                         {
-                            "Name": "1302" 
+                            "name": "1302" 
                         }
                     ]
                 }
@@ -213,7 +213,7 @@
         }
     ];
     var corpusSelector = document.getElementById("building");
-    var profileSelector = document.getElementById("profile");
+    var placeselector = document.getElementById("profile");
     var audienceSelector = document.getElementById("audience");
     var selectedCorps;
     fillSelector(corpusSelector, data, "");
@@ -225,22 +225,22 @@
                 corpusSelector.options[0] = null;
             }
             selectedCorps = data[event.target.value];
-            fillSelector(profileSelector, selectedCorps.Profiles, "Все")
-            profileSelector.dispatchEvent(new Event('change'))
+            fillSelector(placeselector, selectedCorps.places, "Все")
+            placeselector.dispatchEvent(new Event('change'))
         }
     );
-    profileSelector.addEventListener(
+    placeselector.addEventListener(
         'change',
         event => 
         {
             var index = event.target.value;
             var audiences = [];
             if (index == Number.MAX_SAFE_INTEGER){
-                for (item of selectedCorps.Profiles){
-                    audiences = audiences.concat(item.Audiences);
+                for (item of selectedCorps.places){
+                    audiences = audiences.concat(item.audience);
                 }
             } else{
-                audiences = selectedCorps.Profiles[index].Audiences;
+                audiences = selectedCorps.places[index].audience;
             }
             fillSelector(audienceSelector, audiences, "Все")
         }
@@ -248,36 +248,36 @@
     
     var students = [
         {
-            "FirstName": "Василий",
-            "LastName": "Васильев",
-            "MiddleName": "Васильевич",
-            "Audience": "116",
-            "Profile": "филологический",
-            "Bel": false
+            "firstName": "Василий",
+            "lastName": "Васильев",
+            "parentName": "Васильевич",
+            "place": "116",
+            "profile": "филологический",
+            "needBel": false
         },
         {
-            "FirstName": "Иван",
-            "LastName": "Иванов",
-            "MiddleName": "Иванович",
-            "Audience": "433",
-            "Profile": "математический",
-            "Bel": true
+            "firstName": "Иван",
+            "lastName": "Иванов",
+            "parentName": "Иванович",
+            "place": "433",
+            "profile": "математический",
+            "needBel": true
         },
         {
-            "FirstName": "Иван",
-            "LastName": "Иванов",
-            "MiddleName": "Петрович",
-            "Audience": "43",
-            "Profile": "математический",
-            "Bel": true
+            "firstName": "Иван",
+            "lastName": "Иванов",
+            "parentName": "Петрович",
+            "place": "43",
+            "profile": "математический",
+            "needBel": true
         },
         {
-            "FirstName": "Александр",
-            "LastName": "Александров",
-            "MiddleName": "Александрович",
-            "Audience": "517",
-            "Profile": "математический",
-            "Bel": false
+            "firstName": "Александр",
+            "lastName": "Александров",
+            "parentName": "Александрович",
+            "place": "517",
+            "profile": "математический",
+            "needBel": false
         }
     ]
     var studentsTable = document.getElementById("students");
@@ -290,12 +290,9 @@
         'click',
         () => {
             var dataset = event.target.dataset;
-            if (attrs != dataset.attrs){
+            shouldSwitch = attrs != dataset.attrs;
+            if (shouldSwitch){
                 asc = 1;
-                shouldSwitch = true;
-            }
-            else{
-                shouldSwitch = false;
             }
 
             attrs = dataset.attrs;
@@ -305,63 +302,63 @@
         }
     );
         
+    function appendArrow(){
+        var arrowUp = document.getElementsByClassName('arrow-up')[0];
+        var arrowDown= document.getElementsByClassName('arrow-down')[0];
+        if (arrowUp != null){
+            arrowUp.className = "";
+        }
+        if (arrowDown != null){
+            arrowDown.className = "";
+        }
         
-        function appendArrow(){
-            var arrowUp = document.getElementsByClassName('arrow-up')[0];
-            var arrowDown= document.getElementsByClassName('arrow-down')[0];
-            if (arrowUp != null){
-                arrowUp.className = "";
+        var arrowStyle = 'arrow-down';
+        if (asc == 1){
+            arrowStyle = 'arrow-up';
+        }
+        event.target.className = arrowStyle;
+    }
+    
+    function sortData(data, attrs, type) {
+        if (!shouldSwitch){
+            asc *= -1;
+        }
+        data.sort(predicate);
+
+        function converter(current, next){
+            var attrsArr = attrs.split('|');
+            if (type == "Number"){
+                var a = 0;
+                var b = 0;
             }
-            if (arrowDown != null){
-                arrowDown.className = "";
+
+            for (attr of attrsArr){
+                var c = current[attr].toString();
+                var d = next[attr].toString();
+                if (type == "Number"){
+                    c = Number(c);
+                    d = Number(d);
+                }
+
+                a += c;
+                b += d;
             }
             
-            var arrowStyle = 'arrow-down';
-            if (asc == 1){
-                arrowStyle = 'arrow-up';
-            }
-            event.target.className = arrowStyle;
+            return [a, b];
         }
-        
-        function sortData(data, attrs, type) {
-            if (!shouldSwitch){
-                asc *= -1;
+
+        function predicate(current, next){
+            var values = converter(current, next);
+            var returnValue = -1;
+            if (values[0] > values[1]){
+                returnValue = 1;
             }
-            data.sort(predicate);
-
-            function converter(current, next){
-                var attrsArr = attrs.split('|');
-                if (type == "Number"){
-                    var a = 0;
-                    var b = 0;
-                }
-
-                for (attr of attrsArr){
-                    var c = current[attr].toString();
-                    var d = next[attr].toString();
-                    if (type == "Number"){
-                        c = Number(c);
-                        d = Number(d);
-                    }
-
-                    a += c;
-                    b += d;
-                }
-                
-                return [a, b];
+            if (values[0] == values[1]){
+                returnValue = 0;
             }
-
-            function predicate(current, next){
-                var values = converter(current, next);
-                if (values[0] > values[1]){
-                    return asc;
-                }
-                if (values[0] == values[1]){
-                    return 0;
-                }
-                return -asc;
-            }
+            return asc*returnValue;
         }
+    }
 
     function fillStudentsTable(){
         var body = document.createElement('tbody');
@@ -370,10 +367,10 @@
             var row = document.createElement('tr');
             row.draggable = true;
             row.innerHTML = `<td>${++index}</td>
-                            <td>${student.LastName + ' ' + student.FirstName + ' ' + student.MiddleName }</td>
-                            <td>${student.Audience}</td>
-                            <td>${student.Profile}</td>
-                            <td>${student.Bel}</td>`
+                            <td>${student.lastName + ' ' + student.firstName + ' ' + student.parentName }</td>
+                            <td>${student.place}</td>
+                            <td>${student.profile}</td>
+                            <td>${student.needBel}</td>`
             body.appendChild(row);
         }
         studentsTable.replaceChild(body, studentsTable.tBodies[0])
@@ -393,7 +390,7 @@
 
         for (index in data){
             var option = new Option();
-            option.text = data[index].Name;
+            option.text = data[index].name;
             option.value = index;
             selector.add(option);
         }

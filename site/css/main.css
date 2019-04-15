@@ -152,7 +152,6 @@ tr {
 }
 
 .arrow-up::after {
-    width: 100px;
     content: '↑';
 }
 
