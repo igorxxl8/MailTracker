@@ -1,251 +1,46 @@
 (() => {
-    var data = [
-        {
-            "name": "Главный корпус БГУ",
-            "places": [
-                {
-                    "name": "МАТ",
-                    "audience": [
-                        {
-                            "name": "517" 
-                        },
-                        {
-                            "name": "517" 
-                        },
-                        {
-                            "name": "513" 
-                        },
-                        {
-                            "name": "606" 
-                        },
-                        {
-                            "name": "609" 
-                        },
-                        {
-                            "name": "433" 
-                        },
-                        {
-                            "name": "521" 
-                        }
-                    ]
-                }
-            ], 
-        },
-        {
-            "name": "Физический факультет БГУ",
-            "places": [
-                {
-                    "name": "ФИЗ",
-                    "audience": [
-                        {
-                            "name": "319" 
-                        },
-                        {
-                            "name": "319" 
-                        },
-                        {
-                            "name": "213" 
-                        },
-                        {
-                            "name": "211" 
-                        },
-                        {
-                            "name": "321" 
-                        },
-                        {
-                            "name": "418" 
-                        },
-                        {
-                            "name": "220" 
-                        }
-                    ]
-                }
-            ]
-        }, 
-        {
-            "name": "Географический факультет БГУ",
-            "places": [
-                {
-                    "name": "Фил (РУС)",
-                    "audience": [
-                        {
-                            "name": "115" 
-                        },
-                        {
-                            "name": "312" 
-                        }
-                    ]
-                },
-                {
-                    "name": "Фил (АНГ)",
-                    "audience": [
-                        {
-                            "name": "116" 
-                        },
-                        {
-                            "name": "212" 
-                        },
-                        {
-                            "name": "311" 
-                        }
-                    ]
-                }
-            ]
-        }, 
-        {
-            "name": "Химический факультет БГУ",
-            "places": [
-                {
-                    "name": "ХИМ",
-                    "audience": [
-                        {
-                            "name": "713" 
-                        },
-                        {
-                            "name": "713" 
-                        },
-                        {
-                            "name": "201" 
-                        },
-                        {
-                            "name": "301" 
-                        },
-                        {
-                            "name": "601" 
-                        }
-                    ]
-                }, 
-                {
-                    "name": "ИМ",
-                    "audience": [
-                        {
-                            "name": "705" 
-                        },
-                        {
-                            "name": "705" 
-                        },
-                        {
-                            "name": "706" 
-                        },
-                        {
-                            "name": "707a" 
-                        },
-                        {
-                            "name": "708" 
-                        },
-                        {
-                            "name": "709" 
-                        },
-                        {
-                            "name": "501" 
-                        },
-                        {
-                            "name": "507" 
-                        },
-                        {
-                            "name": "701" 
-                        }
-                    ]
-                }
-            ]
-        }, 
-        {
-            "name": "Юридический факультет БГУ",
-            "places": [
-                {
-                    "name": "БИО",
-                    "audience": [
-                        {
-                            "name": "308" 
-                        },
-                        {
-                            "name": "308" 
-                        },
-                        {
-                            "name": "511" 
-                        },
-                        {
-                            "name": "214" 
-                        },
-                        {
-                            "name": "418" 
-                        },
-                        {
-                            "name": "309" 
-                        },
-                        {
-                            "name": "513" 
-                        },
-                        {
-                            "name": "610" 
-                        },
-                        {
-                            "name": "609" 
-                        }
-                    ]
-                }
-            ]
-        }, 
-        {
-            "name": "Факультет международных отношений БГУ",
-            "places": [
-                {
-                    "name": "ИСТ",
-                    "audience": [
-                        {
-                            "name": "1202" 
-                        },
-                        {
-                            "name": "1202" 
-                        },
-                        {
-                            "name": "1201" 
-                        },
-                        {
-                            "name": "1301" 
-                        },
-                        {
-                            "name": "1302" 
-                        }
-                    ]
-                }
-            ]
-        }
-    ];
     var corpusSelector = document.getElementById("building");
-    var placeselector = document.getElementById("profile");
+    var placeSelector = document.getElementById("profile");
     var audienceSelector = document.getElementById("audience");
-    var selectedCorps;
-    fillSelector(corpusSelector, data, "");
-    corpusSelector.addEventListener(
-        'change',
-        event => 
-        {
-            if (corpusSelector.options[0].text == ""){
-                corpusSelector.options[0] = null;
-            }
-            selectedCorps = data[event.target.value];
-            fillSelector(placeselector, selectedCorps.places, "Все")
-            placeselector.dispatchEvent(new Event('change'))
-        }
-    );
-    placeselector.addEventListener(
-        'change',
-        event => 
-        {
-            var index = event.target.value;
-            var audiences = [];
-            if (index == Number.MAX_SAFE_INTEGER){
-                for (item of selectedCorps.places){
-                    audiences = audiences.concat(item.audience);
+    fetch('https://lyceumexams.herokuapp.com/api/corpses')
+        .then(response => {
+            return response.json();
+        })
+        .then(data => {
+            fillSelector(corpusSelector, data, "name", "");
+            var selectedCorps;
+            corpusSelector.addEventListener(
+                'change',
+                event => 
+                {
+                    if (corpusSelector.options[0].text == ""){
+                        corpusSelector.options[0] = null;
+                    }
+                    selectedCorps = data[event.target.value];
+                    fillSelector(placeSelector, selectedCorps.places, "code", "Все")
+                    placeSelector.dispatchEvent(new Event('change'))
                 }
-            } else{
-                audiences = selectedCorps.places[index].audience;
-            }
-            fillSelector(audienceSelector, audiences, "Все")
-        }
-    );
+            );
+            placeSelector.addEventListener(
+                'change',
+                event => 
+                {
+                    var index = event.target.value;
+                    var audiences = [];
+                    if (index == Number.MAX_SAFE_INTEGER){
+                        for (item of selectedCorps.places){
+                            audiences = audiences.concat(item.audience);
+                        }
+                    } else{
+                        audiences = selectedCorps.places[index].audience;
+                    }
+                    fillSelector(audienceSelector, audiences, "name", "Все")
+                }
+            );
+        })
+
     
+
     var students = [
         {
             "firstName": "Василий",
@@ -376,7 +171,7 @@
         studentsTable.replaceChild(body, studentsTable.tBodies[0])
     }
 
-    function fillSelector(selector, data, current = null){
+    function fillSelector(selector, data, attr,  current = null){
         for (index in selector.options){
             selector.options[index] = null;
         }
@@ -390,7 +185,7 @@
 
         for (index in data){
             var option = new Option();
-            option.text = data[index].name;
+            option.text = data[index][attr];
             option.value = index;
             selector.add(option);
         }
