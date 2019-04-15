@@ -281,133 +281,112 @@
         }
     ]
     var studentsTable = document.getElementById("students");
-    var thName = document.getElementById("thName");
-    var thAudience = document.getElementById("thAudience");
-    var thProfile = document.getElementById("thProfile");
-    var thBel = document.getElementById("thBel");
+    var tHeader = document.getElementById("tHeader");
     fillStudentsTable();
-    thName.addEventListener(
-        'click',
-        ()  => {
-            sortTable(studentsTable, 1);
-            appendArrow();
-        }
-    );
-    thAudience.addEventListener(
-        'click',
-        ()  => {
-            sortTable(studentsTable, 2);
-            appendArrow();
-        }
-    );
-    thProfile.addEventListener(
-        'click',
-        ()  => {
-            sortTable(studentsTable, 3);
-            appendArrow();
-        }
-    );
-    thBel.addEventListener(
+    var attrs;
+    var shouldSwitch;
+    var asc;
+    tHeader.addEventListener(
         'click',
         () => {
-            sortTable(studentsTable, 4);
+            var dataset = event.target.dataset;
+            if (attrs != dataset.attrs){
+                asc = 1;
+                shouldSwitch = true;
+            }
+            else{
+                shouldSwitch = false;
+            }
+
+            attrs = dataset.attrs;
+            sortData(students, attrs, dataset.type);
+            fillStudentsTable();
             appendArrow();
         }
     );
-
-    function appendArrow(){
-        var arrowUp = document.getElementsByClassName('arrow-up');
-        var arrowDown= document.getElementsByClassName('arrow-down');
-        for (item of arrowUp){
-            item.removeAttribute('class');
+        
+        
+        function appendArrow(){
+            var arrowUp = document.getElementsByClassName('arrow-up')[0];
+            var arrowDown= document.getElementsByClassName('arrow-down')[0];
+            if (arrowUp != null){
+                arrowUp.className = "";
+            }
+            if (arrowDown != null){
+                arrowDown.className = "";
+            }
+            
+            var arrowStyle = 'arrow-down';
+            if (asc == 1){
+                arrowStyle = 'arrow-up';
+            }
+            event.target.className = arrowStyle;
         }
-        for (item of arrowDown){
-            item.removeAttribute('class');
-        }
+        
+        function sortData(data, attrs, type) {
+            if (!shouldSwitch){
+                asc *= -1;
+            }
+            data.sort(predicate);
 
-        var arrowStyle; 
-        if (asc)
-            arrowStyle = 'arrow-up';
-        else
-            arrowStyle = 'arrow-down';
-        event.target.className = arrowStyle;
-    }
+            function converter(current, next){
+                var attrsArr = attrs.split('|');
+                if (type == "Number"){
+                    var a = 0;
+                    var b = 0;
+                }
 
-    function sortTable(table, n) {
-        var rows, canContinueSwitch, i, x, y, shouldSwitch, switchCount = 0;
-        canContinueSwitch = true;
-        asc = true; 
-        while (canContinueSwitch) {
-          canContinueSwitch = false;
-          rows = table.rows;
-          for (i = 1; i < (rows.length - 1); i++) {
-            shouldSwitch = false;
-            x = rows[i].getElementsByTagName("TD")[n];
-            y = rows[i + 1].getElementsByTagName("TD")[n];
-            if (asc) {
-                if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
-                    shouldSwitch = true;
-                    break;
+                for (attr of attrsArr){
+                    var c = current[attr].toString();
+                    var d = next[attr].toString();
+                    if (type == "Number"){
+                        c = Number(c);
+                        d = Number(d);
+                    }
+
+                    a += c;
+                    b += d;
                 }
-            } else if (!asc) {
-                if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
-                    shouldSwitch = true;
-                    break;
+                
+                return [a, b];
+            }
+
+            function predicate(current, next){
+                var values = converter(current, next);
+                if (values[0] > values[1]){
+                    return asc;
                 }
+                if (values[0] == values[1]){
+                    return 0;
+                }
+                return -asc;
             }
         }
-        if (shouldSwitch) {
-            var rinum = rows[i].getElementsByTagName("TD")[0];
-            var riinum = rows[i + 1].getElementsByTagName("TD")[0];
-            var temp = rinum.innerHTML;
-            rinum.innerHTML = riinum.innerHTML;
-            riinum.innerHTML = temp;
-            rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
-            canContinueSwitch = true;
-            switchCount ++; 
-          } else {
-            if (switchCount == 0 && asc) {
-              asc = false;
-              canContinueSwitch = true;
-            }
-          }
-        }
-      }
 
     function fillStudentsTable(){
         var body = document.createElement('tbody');
         for (index in students){
+            var student = students[index];
             var row = document.createElement('tr');
             row.draggable = true;
-            var col1 = document.createElement('td');
-            var col2 = document.createElement('td');
-            var col3 = document.createElement('td');
-            var col4 = document.createElement('td');
-            var col5 = document.createElement('td');
-            var student = students[index];
-            col2.appendChild(document.createTextNode(student.LastName + " " + student.FirstName + " " + student.MiddleName));
-            col3.appendChild(document.createTextNode(student.Audience));
-            col4.appendChild(document.createTextNode(student.Profile));
-            col5.appendChild(document.createTextNode(student.Bel));
-            col1.appendChild(document.createTextNode(++index));
-            row.appendChild(col1);
-            row.appendChild(col2);
-            row.appendChild(col3);
-            row.appendChild(col4);
-            row.appendChild(col5);
+            row.innerHTML = `<td>${++index}</td>
+                            <td>${student.LastName + ' ' + student.FirstName + ' ' + student.MiddleName }</td>
+                            <td>${student.Audience}</td>
+                            <td>${student.Profile}</td>
+                            <td>${student.Bel}</td>`
             body.appendChild(row);
         }
         studentsTable.replaceChild(body, studentsTable.tBodies[0])
     }
 
-    function fillSelector(selector, data, first = null){
+    function fillSelector(selector, data, current = null){
         for (index in selector.options){
             selector.options[index] = null;
         }
 
-        if (first != null) {
+        if (current != null) {
             var option = new Option();
-            option.text = first;
+            option.text = current;
             option.value = Number.MAX_SAFE_INTEGER;
             selector.add(option);
         }
