@@ -140,15 +140,35 @@ table {
     border-collapse: collapse;
 }
 
+table td {
+    padding: 10px;
+}
+
+table tbody tr:hover {
+    background-color: #f5f5f5;
+}
+
+.drag-table tbody tr:hover {
+    cursor: move;
+}
+
 tr {
     text-align: left;
     border-top: 1px solid #ddd;
     border-bottom: 1px solid #ddd;
 }
 
-.table tbody tr:hover {
-    cursor: move;
-    background-color: #f5f5f5;
+.av-drag {
+    position: absolute;
+    z-index: 9999;
+}
+
+.drop {
+    background: lightgray;
+}
+
+.drop tr:hover {
+    background: papayawhip;
 }
 
 .arrow-up::after {
@@ -157,10 +177,6 @@ tr {
 
 .arrow-down::after {
     content: '↓';
-}
-
-.table td {
-    padding: 10px;
 }
 
 .form-element {
@@ -224,7 +240,7 @@ tr {
     z-index: 9;
 }
 
-.table .sticky-top {
+table.sticky-top {
     top: 90px;
 }
 
