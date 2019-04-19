@@ -156,19 +156,26 @@ tr {
     text-align: left;
     border-top: 1px solid #ddd;
     border-bottom: 1px solid #ddd;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
 }
 
 .av-drag {
     position: absolute;
-    z-index: 9999;
+    z-index: 1000;
 }
 
 .drop {
-    background: lightgray;
+    background-color: #f5f5f5;
 }
 
-.drop tr:hover {
+.drop .drop-el.drop-el-in{
     background: papayawhip;
+}
+
+.drop .drop-el {
+    background-color: #f5f5f5;
 }
 
 .arrow-up::after {

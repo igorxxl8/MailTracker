@@ -43,15 +43,13 @@
             var audienceSelector = document.getElementById("audience");
             var serchTextField = document.getElementById("search");
             var tHeader = document.getElementById("tHeader");
-            var dragRow;
-            var draggableAvatar;
-            var audBody;
+            var currentDroppable;
             var selectedCorps;
-            var attrs;
             var shouldSwitch;
+            var dragRow;
+            var audBody;
+            var attrs;
             var asc;
-
-           
 
             corpsesSelector.addEventListener(
                 'change',
@@ -85,7 +83,7 @@
                     }
                     stud.then(onStudentsGet);
                     fillSelector(audienceSelector, audiences, "name", "Все");
-                    fillAudiencesTable(audiencesTable, audiences)
+                    audBody = fillAudiencesTable(audiencesTable, audiences);
                 }
             );
 
@@ -134,26 +132,66 @@
             document.onmousedown = (e) => {
                 var drag = e.target.closest('.drag');
                 if (!drag) return;
-                audBody = document.getElementById('bodyAudiences');
-                dragRow = drag.cloneNode(true);
-                dragRow.draggable = true;
-                dragRow.className = 'av-drag';
-                studentsTable.tBodies[0].insertBefore(dragRow, drag);
+                dragRow = createTempRow(drag, e);
+                studentsTable.tBodies[0].appendChild(dragRow);
             }
 
             document.onmouseup = () => {
                 if (!dragRow) return;
                 studentsTable.tBodies[0].removeChild(dragRow);
-                dragRow = null;
                 audBody.className = '';
-                audBody = null;
+                dragRow = null;
+                console.log(currentDroppable);
             }
 
-            document.onmousemove = () => {
+            document.onmousemove = (e) => {
                 if (!dragRow) return;
-                audBody.className = 'drop'
+                if (!audBody.className){
+                    audBody.className = 'drop';
+                }
+                
+                dragRow.style.left = e.pageX - dragRow.offsetX + 'px';
+                dragRow.style.top =  e.pageY - dragRow.offsetY + 'px';
+
+                dragRow.hidden = true;
+                var elemBelow = document.elementFromPoint(event.clientX, event.clientY);
+                dragRow.hidden = false;
+                if (!elemBelow) return;
+
+                var droppableBelow = elemBelow.closest('.drop-el');
+                if (currentDroppable == droppableBelow) return;
+                
+                if (currentDroppable) {
+                    currentDroppable.classList.remove('drop-el-in');
+                }
+                currentDroppable = droppableBelow;
+                if (currentDroppable) {
+                    currentDroppable.classList.add('drop-el-in');
+                }
             }
         }
+    }
+
+    function getComputedSize(elem){
+        var styles = document.defaultView.getComputedStyle(elem);
+        return {
+            height: styles.getPropertyValue('height'),
+            width: styles.getPropertyValue('width'),
+        }
+    }
+
+    function createTempRow(drag, e){
+        var coords = drag.getBoundingClientRect();
+        var temp = drag.cloneNode(true);
+        temp.className = 'av-drag';
+        temp.offsetX = e.pageX - coords.left - window.scrollX;
+        temp.offsetY = e.pageY - coords.top - window.scrollY;
+        var size =  getComputedSize(drag);
+        var dragRowStyle = temp.style;
+        dragRowStyle.height = size.height;
+        dragRowStyle.width = size.width;
+        dragRowStyle.opacity = "0.5";
+        return temp;
     }
     
     function sortData(data, asc, attrs, type) {
@@ -219,7 +257,6 @@
         for (index in students){
             var student = students[index];
             var row = document.createElement('tr');
-            //row.draggable = true;
             row.className = 'drag'
             row.innerHTML = `<td>${++index}</td>
                             <td>${student.firstName + ' ' + student.lastName + ' ' + student.parentName }</td>
@@ -228,10 +265,11 @@
                             <td>${student.needBel}</td>`
             body.appendChild(row);
         }
-        table.replaceChild(body, table.tBodies[0])
+        table.replaceChild(body, table.tBodies[0]);
+        return body;
     }
 
-    function fillAudiencesTable(table, audiences){
+    function fillAudiencesTable(table, audiences, audBody){
         var body = document.createElement('tbody');
         body.id = 'bodyAudiences';
         for (index in audiences){
@@ -241,9 +279,11 @@
                             <td>${audience.count}</td>
                             <td>${audience.max}</td>
                             <td>${audience.bel}</td>`
+            row.className = 'drop-el';
             body.appendChild(row);
         }
         table.replaceChild(body, table.tBodies[0])
+        return body;
     }
 })();
 
