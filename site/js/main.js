@@ -141,7 +141,12 @@
                 studentsTable.tBodies[0].removeChild(dragRow);
                 audBody.className = '';
                 dragRow = null;
-                console.log(currentDroppable);
+
+                if (currentDroppable != null){
+                    var newAudience = currentDroppable.children[0].children[0].innerHTML;
+                    var newQuantity = +currentDroppable.children[1].innerHTML + 1;
+                    console.log('Новая аудитория: ' + newAudience + ', новое количество: ' + newQuantity);
+                }
             }
 
             document.onmousemove = (e) => {
@@ -190,7 +195,6 @@
         var dragRowStyle = temp.style;
         dragRowStyle.height = size.height;
         dragRowStyle.width = size.width;
-        dragRowStyle.opacity = "0.5";
         return temp;
     }
     
