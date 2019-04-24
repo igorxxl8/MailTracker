@@ -1,0 +1,46 @@
+.navbar {
+    background-color: #5c6bc0;
+}
+
+hr {
+    display: block;
+    height: 1px;
+    min-height: 1px;
+    flex: 1;
+    width: 100%;
+}
+
+#sidebar {
+    width: 375px;
+    position: fixed;
+    top: 0;
+    left: -375px;
+    height: 100vh;
+    z-index: 9999;
+    background: white;
+    transition: all 0.3s;
+}
+
+#sidebar.active {
+    left: 0;
+}
+
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color:  #212121;
+}
+
+.overlay.active {
+    display: block;
+    opacity: 0.5;
+    z-index: 9998;
+}
+
+#sidebar .sidebar-header {
+    background: #f5f5f5;
+}

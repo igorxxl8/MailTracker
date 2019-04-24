@@ -16,7 +16,7 @@
         var corpses = [];
         //var studentsTable = document.getElementById("students");
         //var audiencesTable = document.getElementById("audiences");
-        var corpsbar = document.getElementById("corpsbar");
+        var corpsbar = document.getElementById("sidebar");
         
         api.getDictionary().then(onDictionaryGet);
         api.getCorpses().then(onCorpsesGet);
@@ -144,7 +144,6 @@
             var name = div.cloneNode();
             name.innerHTML = item.name;
             href.appendChild(name);
-            href.href = "#allo";
             
             for (profile of item.places){
                 var prf = div.cloneNode();
