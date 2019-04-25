@@ -1,4 +1,21 @@
 (() => {
+    function toggle() {
+        $(document).ready( () => {
+            $('#dismiss, .overlay').on('click', function () {
+                $('#sidebar').removeClass('active');
+                $('.overlay').removeClass('active');
+            });
+      
+            $('#sidebarCollapse').on('click', function () {
+                $('#sidebar').addClass('active');
+                $('.overlay').addClass('active');
+                $('.collapse.in').toggleClass('in');
+                $('a[aria-expanded=true]').attr('aria-expanded', 'false');
+            });
+        });
+    }
+    toggle();
+
     controller(getApi())
 
     function getApi(){
@@ -16,7 +33,9 @@
         var corpses = [];
         //var studentsTable = document.getElementById("students");
         //var audiencesTable = document.getElementById("audiences");
-        var corpsbar = document.getElementById("sidebar");
+        var corpsbar = document.getElementById("corps");
+        var overlay = document.getElementsByClassName("overlay")[0];
+        var navTitle = document.getElementById('nav-title');
         
         api.getDictionary().then(onDictionaryGet);
         api.getCorpses().then(onCorpsesGet);
@@ -25,6 +44,14 @@
         function onCorpsesGet(corpsesData){
             corpses = corpsesData;
             fillCorpsBar(corpsbar, corpses);
+            corpsbar.addEventListener (
+                'click',
+                () =>{
+                    var row = event.target.closest('.corp-pat');
+                    navTitle.innerHTML = Mapper.corpse(row.dataset.alias);
+                    overlay.dispatchEvent(new Event('click'));
+                }
+            )
         }
         
         function onDictionaryGet(dict){
@@ -134,34 +161,25 @@
             );*/
     }
 
+    String.prototype.trunc = 
+    function(n){
+        return this.substr(0,n-1)+(this.length>n?'&hellip;':'');
+    };
+
     function fillCorpsBar(corpsbar, corpses){
-        var div = document.createElement("div");
-        var ref = document.createElement("a");
-        var button = document.createElement("button");
+        var row = document.getElementsByClassName('corp-pat')[0];
         for (item of corpses){
-            var elem = div.cloneNode();
-            var href = ref.cloneNode();
-            var name = div.cloneNode();
-            name.innerHTML = item.name;
-            href.appendChild(name);
-            
+            var elem = row.cloneNode(true);
+            elem.hidden = false;
+            elem.dataset.alias = item.alias;
+            var cells = elem.cells;
+            var corpName = cells[0];
+
+            var profiles = "";
             for (profile of item.places){
-                var prf = div.cloneNode();
-                prf.innerHTML = `${profile.code} (${profile.count})`;
-                href.appendChild(prf);
+                profiles += `<div>${profile.code} (${profile.count})</div>`
             }
-
-            var btn = button.cloneNode();
-            btn.innerHTML = ">";
-            btn.addEventListener(
-                'click',
-                () => {
-                    alert("helo world");
-                }
-            )
-
-            href.appendChild(btn);
-            elem.appendChild(href);
+            corpName.innerHTML = `<div class="font-weight-bold py-1" style="white-space: nowrap;">${item.name.trunc(21)}</div>${profiles}`;
             corpsbar.appendChild(elem);
         }
     }
@@ -280,5 +298,6 @@ class Mapper {
     static default  = val  => val;
     static audience = val  => this.dictionary.audiences[val];
     static profile  = val  => this.dictionary.profiles[val];
+    static corpse   = val  => this.dictionary.corpses[val];
     static map      = prop => this.hasOwnProperty(prop) ? this[prop] : this.default;
 }

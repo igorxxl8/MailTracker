@@ -20,24 +20,36 @@
 
 <body>
   <div>
-      <nav id="sidebar">
+      <nav id="sidebar" data-spy="scroll">
           <div id="sidebar-header" class="sidebar-header">
-            <div class="pt-4 px-3">
+            <div class="pt-4 px-2">
               <h3>Список Корпусов</h3>
-              <hr></hr>
+              <hr>
             </div>
           </div>
+          <table class="table table-hover">
+            <tbody id="corps">
+              <tr class="corp-pat" hidden>
+                <td class="py-3">
+                </td>
+                <td class="align-middle text-right">
+                  <button class="forw-arrow rounded-circle"><img src="img/more-than.png"></button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
       </nav>
 
-      <nav id="main-navbar" class="navbar navbar-expand-lg navbar-dark fixed-top shadow p-3">
-        <button type="button" id="sidebarCollapse" class="btn btn-outline-dark">
-            <span class="navbar-toggler-icon">
-              <i class="fa fa-navicon" aria-hidden="true"></i>
-            </span>
-        </button>
+      <nav id="main-navbar" class="navbar navbar-dark fixed-top shadow p-3">
+        <div class="d-flex flex-row align-items-center">
+          <button id="sidebarCollapse" class="btn rounded-circle custom-navbar-toggler">
+              <span class="line"></span>
+              <span class="line"></span>
+              <span class="line"></span>
+          </button>
+          <div id="nav-title" class="px-4 text-truncate text-light h1"></div>
+        </div>
       </nav>
-
-      
 
       <div class="overlay"></div>
   </div>
@@ -59,19 +71,7 @@
   
   <!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
   <script type="text/javascript">
-    $(document).ready( () => {
-      $('#dismiss, .overlay').on('click', function () {
-          $('#sidebar').removeClass('active');
-          $('.overlay').removeClass('active');
-      });
-
-      $('#sidebarCollapse').on('click', function () {
-          $('#sidebar').addClass('active');
-          $('.overlay').addClass('active');
-          $('.collapse.in').toggleClass('in');
-          $('a[aria-expanded=true]').attr('aria-expanded', 'false');
-      });
-  });
+    
   </script>
 
   <script>
