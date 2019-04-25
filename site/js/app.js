@@ -48,13 +48,13 @@
             fillCorpsBar(corpsbar, corpses);
             corpsbar.addEventListener (
                 'click',
-                () =>{
+                () => {
                     var row = event.target.closest('.corp-pat');
                     if (cur == row) return;
                     if (cur === undefined) dummyContent.remove();
+                    console.log('lol')
                     navTitle.innerHTML = Mapper.corpse(row.dataset.alias);
                     overlay.dispatchEvent(new Event('click'));
-
                     cur = row;
                 }
             )
