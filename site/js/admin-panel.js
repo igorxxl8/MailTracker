@@ -43,6 +43,7 @@
             var audienceSelector = document.getElementById("audience");
             var serchTextField = document.getElementById("search");
             var tHeader = document.getElementById("tHeader");
+            var saveButton = document.getElementById("save");
             var currentDroppable;
             var selectedCorps;
             var shouldSwitch;
@@ -51,67 +52,60 @@
             var attrs;
             var asc;
 
-            corpsesSelector.addEventListener(
-                'change',
-                event => 
-                {
-                    if (corpsesSelector.options[0].text == ""){
-                        corpsesSelector.options[0] = null;
-                    }
-                    selectedCorps = corpses[event.target.value];
-                    fillSelector(placeSelector, selectedCorps.places, "code", "Все")
-                    placeSelector.dispatchEvent(new Event('change'));
-                    serchTextField.value = '';
+            saveButton.onclick = () => {
+                alert("save");
+            }
+
+            corpsesSelector.onchange = event =>
+            {
+                if (corpsesSelector.options[0].text == ""){
+                    corpsesSelector.options[0] = null;
                 }
-            );
+                selectedCorps = corpses[event.target.value];
+                fillSelector(placeSelector, selectedCorps.places, "code", "Все")
+                placeSelector.dispatchEvent(new Event('change'));
+                serchTextField.value = '';
+            }
 
-            placeSelector.addEventListener(
-                'change',
-                event => 
-                {
-                    var index = event.target.value;
-                    var audiences = [];
-                    var stud;
-                    if (index == Number.MAX_SAFE_INTEGER){
-                        for (item of selectedCorps.places){
-                            audiences = audiences.concat(item.audience);
-                        }
-                        stud = api.getStudents(selectedCorps.alias);
-                    } else{
-                        audiences = selectedCorps.places[index].audience;
-                        stud = api.getStudents(selectedCorps.alias, selectedCorps.places[index]._id);
+            placeSelector.onchange = event => 
+            {
+                var index = event.target.value;
+                var audiences = [];
+                var stud;
+                if (index == Number.MAX_SAFE_INTEGER){
+                    for (item of selectedCorps.places){
+                        audiences = audiences.concat(item.audience);
                     }
-                    stud.then(onStudentsGet);
-                    fillSelector(audienceSelector, audiences, "name", "Все");
-                    audBody = fillAudiencesTable(audiencesTable, audiences);
+                    stud = api.getStudents(selectedCorps.alias);
+                } else{
+                    audiences = selectedCorps.places[index].audience;
+                    stud = api.getStudents(selectedCorps.alias, selectedCorps.places[index]._id);
                 }
-            );
+                stud.then(onStudentsGet);
+                fillSelector(audienceSelector, audiences, "name", "Все");
+                audBody = fillAudiencesTable(audiencesTable, audiences);
+            }
 
-            audienceSelector.addEventListener(
-                'change',
-                () => {
-                    filtered = students;
-                    var index = event.target.selectedIndex;
-                    if (index != 0){
-                        var audience = audienceSelector[index].text;
-                        filtered = students.filter(s => Mapper.audience(s.audience) === audience)
-                    }
-                    fillStudentsTable(studentsTable, filtered);
-                }  
-            );
+            audienceSelector.onchange = () => 
+            {
+                filtered = students;
+                var index = event.target.selectedIndex;
+                if (index != 0){
+                    var audience = audienceSelector[index].text;
+                    filtered = students.filter(s => Mapper.audience(s.audience) === audience)
+                }
+                fillStudentsTable(studentsTable, filtered);
+            }  
 
-            serchTextField.addEventListener(
-                'input',
-                () => {
+            serchTextField.oninput = () => 
+            {
                     var text = (event.target.value).replace(/ /g, '').toLowerCase();
                     var temp = filtered.filter(s => (s.firstName + s.lastName + s.parentName).toLowerCase().includes(text));
                     fillStudentsTable(studentsTable, temp);
-                }
-            )
+            }
             
-            tHeader.addEventListener(
-                'click',
-                () => {
+            tHeader.onclick = () =>
+            {
                     var dataset = event.target.dataset;
                     shouldSwitch = attrs != dataset.attrs;
                     if (shouldSwitch){
@@ -126,8 +120,7 @@
                     sortData(students, asc, attrs, dataset.type);
                     fillStudentsTable(studentsTable, students);
                     appendArrow(asc);
-                }
-            );
+            }
 
             document.onmousedown = (e) => {
                 var drag = e.target.closest('.drag');
