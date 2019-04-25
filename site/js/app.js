@@ -36,6 +36,8 @@
         var corpsbar = document.getElementById("corps");
         var overlay = document.getElementsByClassName("overlay")[0];
         var navTitle = document.getElementById('nav-title');
+        var cur;
+        var dummyContent = document.getElementById('dummyContent');
         
         api.getDictionary().then(onDictionaryGet);
         api.getCorpses().then(onCorpsesGet);
@@ -48,8 +50,12 @@
                 'click',
                 () =>{
                     var row = event.target.closest('.corp-pat');
+                    if (cur == row) return;
+                    if (cur === undefined) dummyContent.remove();
                     navTitle.innerHTML = Mapper.corpse(row.dataset.alias);
                     overlay.dispatchEvent(new Event('click'));
+
+                    cur = row;
                 }
             )
         }
