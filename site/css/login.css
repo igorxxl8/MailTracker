@@ -92,6 +92,7 @@ h1 {
     border-radius: 3px;
     border: none;
     padding: 10px;
+    transition: all .5s;
 }
 
 .btn:hover {
@@ -99,7 +100,7 @@ h1 {
 }
 
 .light-shadow {
-
+    box-shadow: 3px 3px 15px grey;
 }
 
 .btn-primary {
