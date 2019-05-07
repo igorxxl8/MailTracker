@@ -1,0 +1,70 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+  <meta charset="utf-8">
+  <title>Sign in</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="manifest" href="site.webmanifest">
+  <link rel="apple-touch-icon" href="icon.png">
+  <!-- Place favicon.ico in the root directory -->
+
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/login.css">
+  <link href="https://fonts.googleapis.com/css?family=Monda" rel="stylesheet">
+
+  <meta name="theme-color" content="#fafafa">
+</head>
+
+<body>
+  
+  <div class="d-flex justify-content-center" style="height: 100vh">
+    <div class="mx-auto" style="margin-top: 120px;">
+      <img src="img/name.png" alt="mail tracker">
+    </div>
+    <div class="mx-auto">
+      <h1>Log in to continue to Mail Tracker</h1>
+    </div>
+  
+    <!-- Add your site or application content here -->
+    <div class="container mx-auto">
+      <div class="d-flex column">
+        <section>
+          <form id="form-login" action="">
+            <div class="d-flex column">
+              <input class="form-control txt-field" type="text" id="email" placeholder="Enter email">
+              <input class="form-control txt-field" type="password" id="password" placeholder="Enter password">
+              <button class="form-control btn btn-primary" type="submit">Continue</button>
+            </div>
+          </form>
+  
+        </section>
+      </div>
+    </div>
+
+    <footer class="mx-auto mt-auto" style="margin-bottom: 40px;">
+      <div>
+        <a href="signup.html">Sign up for account</a>
+      </div>
+    </footer>
+  </div>
+
+
+
+  <script src="js/vendor/modernizr-{{MODERNIZR_VERSION}}.min.js"></script>
+  <script src="https://code.jquery.com/jquery-{{JQUERY_VERSION}}.min.js" integrity="{{JQUERY_SRI_HASH}}" crossorigin="anonymous"></script>
+  <script>window.jQuery || document.write('<script src="js/vendor/jquery-{{JQUERY_VERSION}}.min.js"><\/script>')</script>
+  <script src="js/plugins.js"></script>
+  <script src="js/main.js"></script>
+
+  <!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
+  <script>
+    window.ga = function () { ga.q.push(arguments) }; ga.q = []; ga.l = +new Date;
+    ga('create', 'UA-XXXXX-Y', 'auto'); ga('set','transport','beacon'); ga('send', 'pageview')
+  </script>
+  <script src="https://www.google-analytics.com/analytics.js" async defer></script>
+</body>
+
+</html>
