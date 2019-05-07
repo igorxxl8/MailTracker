@@ -44,6 +44,7 @@
             var serchTextField = document.getElementById("search");
             var tHeader = document.getElementById("tHeader");
             var saveButton = document.getElementById("save");
+            var lastSave = document.getElementById("last-save");
             var currentDroppable;
             var selectedCorps;
             var shouldSwitch;
@@ -53,7 +54,7 @@
             var asc;
 
             saveButton.onclick = () => {
-                alert("save");
+                lastSave.innerHTML = new Date().toLocaleString('ru-Ru');
             }
 
             corpsesSelector.onchange = event =>
