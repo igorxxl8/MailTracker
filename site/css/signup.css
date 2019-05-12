@@ -95,15 +95,20 @@ h1 {
     transition: all .5s;
 }
 
+
 .light-shadow {
     box-shadow: 3px 3px 15px grey;
 }
 
-.btn-primary {
+.btn-success {
     color: white;
-    background: blue;
+    background: rgb(70, 156, 70);
 }
 
-.btn-primary:hover {
-    background: rgb(18, 18, 122);
+.btn-success:hover {
+    background: green;
+}
+
+.hidden {
+    display: none;
 }

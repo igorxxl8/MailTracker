@@ -12,21 +12,53 @@
   <!-- Place favicon.ico in the root directory -->
 
   <link rel="stylesheet" href="css/normalize.css">
-  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/signup.css">
+  <link href="https://fonts.googleapis.com/css?family=Monda" rel="stylesheet">
 
   <meta name="theme-color" content="#fafafa">
 </head>
 
 <body>
   
+  <div class="d-flex justify-content-center" style="height: 100vh">
+    <div class="mx-auto" style="margin-top: 120px;">
+      <img src="img/name.png" alt="mail tracker">
+    </div>
+    <div class="mx-auto">
+      <h1>Sign up to continue</h1>
+    </div>
+  
+    <!-- Add your site or application content here -->
+    <div class="container mx-auto">
+      <div class="d-flex column">
+        <section>
+          <form id="form-login" action="">
+            <div class="d-flex column">
+              <h4 class="form-control">Enter email address</h4>
+              <input class="form-control light-shadow txt-field" type="text" id="email" placeholder="Email">
+              <input class="form-control hidden light-shadow txt-field" type="password" id="name" placeholder="Full name">
+              <input class="form-control hidden light-shadow txt-field" type="password" id="password" placeholder="Password">
+              <button id="signup" class="form-control light-shadow btn btn-success" type="button">Continue</button>
+            </div>
+          </form>
+  
+        </section>
+      </div>
+    </div>
 
-  <!-- Add your site or application content here -->
-  <p>Hello world! This is HTML5 Boilerplate.</p>
-  <script src="js/vendor/modernizr-{{MODERNIZR_VERSION}}.min.js"></script>
-  <script src="https://code.jquery.com/jquery-{{JQUERY_VERSION}}.min.js" integrity="{{JQUERY_SRI_HASH}}" crossorigin="anonymous"></script>
-  <script>window.jQuery || document.write('<script src="js/vendor/jquery-{{JQUERY_VERSION}}.min.js"><\/script>')</script>
+    <footer class="mx-auto mt-auto" style="margin-bottom: 40px;">
+      <div>
+        <a href="login.html">Have an account? Log in</a>
+      </div>
+    </footer>
+  </div>
+
+
+
+  <script src="js/vendor/modernizr-3.7.1.min.js"></script>
+  <script>window.jQuery || document.write('<script src="js/vendor/jquery-3.3.1.min.js"><\/script>')</script>
   <script src="js/plugins.js"></script>
-  <script src="js/main.js"></script>
+  <script src="js/signup.js"></script>
 
   <!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
   <script>
