@@ -1,37 +1,38 @@
 function ind_task1(){
-    var integral = {
-        a: 1.2,
-        b: 2.8,
-        f: (x) => Math.sqrt(1.2*x + 0.7)/(1.4*x+Math.sqrt(1.3*x*x + 0.5)),
-        toString: () => `(a:${integral.a} b:${integral.b})` + integral.f + 'dx'    
-    }
-
     var info = {
         n: 100
     }
 
+    var integral = new Integral(1.2, 2.8, x => Math.sqrt(1.2*x + 0.7)/(1.4*x+Math.sqrt(1.3*x*x + 0.5)));
     calcDifferentMethods(integral,info);
 
-    var integral2 = {
-        a: 2,
-        b: 3.5,
-        f: (x) => 1/(Math.sqrt(x*x - 1)),
-        toString: () => `(a:${integral2.a} b:${integral2.b})` + integral2.f + 'dx'    
-    }
-
+    var integral2 = new Integral(2, 3.5, x => 1/(Math.sqrt(x*x - 1)));
     calcDifferentMethods(integral2,info);
 }
 
 function calcDifferentMethods(integral, info){
     alert(integral);
-    alert(`Left rect method: ${integrate(integral, leftRectMethod, info)}`);
-    alert(`Right rect method: ${integrate(integral, rightRectMethod, info)}`);
-    alert(`Central rect method: ${integrate(integral, centralRectMethod, info)}`);
-    alert(`Trap method: ${integrate(integral, trapMethod, info)}`);
+    alert(`Left rect method: ${integral.integrate(leftRectMethod, info)}`);
+    alert(`Right rect method: ${integral.integrate(rightRectMethod, info)}`);
+    alert(`Central rect method: ${integral.integrate(centralRectMethod, info)}`);
+    alert(`Trap method: ${integral.integrate(trapMethod, info)}`);
 }
 
-function integrate(integral, method, info){
-    return method(integral, info);
+
+class Integral {
+    constructor(a, b, f){
+        this.a = a;
+        this.b = b;
+        this.f = f;
+    }
+
+    integrate(method, info){
+        return method(this, info);
+    }
+
+    toString() {
+        return `(a:${this.a} b:${this.b})` + this.f + 'dx';
+    }
 }
 
 function leftRectMethod(integral, info){
