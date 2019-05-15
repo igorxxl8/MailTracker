@@ -1,0 +1,172 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+  <meta charset="utf-8">
+  <title>Cabinte</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <link rel="manifest" href="site.webmanifest">
+  <link rel="apple-touch-icon" href="icon.png">
+  <!-- Place favicon.ico in the root directory -->
+
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/cabinet.css">
+  <link rel="stylesheet" href="css/font-awesome-4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+  <meta name="theme-color" content="#fafafa">
+</head>
+
+<body style="background: #fafafa">
+  <div>
+    <aside>
+      <nav id="sidebar" class="active" data-spy="scroll">
+          <div id="sidebar-header" class="sidebar-header">
+            <div class="pt-2 pb-3 pl-2">
+              <div class="d-inline-flex">
+                <div>
+                  <button class="btn btn-outline-info rounded-circle">
+                    <div class="p-1" title="User info"><i class="fa fa-user" style="font-size: 1.5em;" aria-hidden="true"></i></div>
+                  </button>
+                </div>
+                <div class="align-middle py-2 mx-2">
+                  <h3 id="username">Igor Turtsevich</h3>
+                </div>
+              </div>
+            </div>
+          </div>
+          <table id="sidebar-tabs" class="table table-hover">
+            <tbody id="corps">
+              <tr id="patternTab" class="corp-pat" hidden>
+                <td class="py-3">
+                  <div class="py-1">Create new order</div>
+                </td>
+                <td class="text-right">
+                  <button class="forw-arrow rounded-circle"><img src="img/more-than.png"></button>
+                </td>
+              </tr>
+              <tr id="ordersTab">
+                  <td class="align-middle py-3">
+                    <div class="h4 font-weight-bold py-1">Orders</div>
+                  </td>
+                  <td class="text-right">
+                    <button class="forw-arrow rounded-circle"><img src="img/more-than.png"></button>
+                  </td>
+                </tr>
+              <tr id="newOrderTab">
+                  <td class="align-middle py-3">
+                    <div class="h4 font-weight-bold py-1">New order</div>
+                  </td>
+                  <td class="text-right">
+                    <button class="forw-arrow rounded-circle"><img src="img/more-than.png"></button>
+                  </td>
+                </tr>
+              <tr id="historyTab">
+                  <td class="align-middle py-3">
+                    <div class="h4 font-weight-bold py-1"">History</div>
+                  </td>
+                  <td class="text-right">
+                    <button class="forw-arrow rounded-circle"><img src="img/more-than.png"></button>
+                  </td>
+                </tr>
+              </tbody>
+          </table>
+      </nav>
+    </aside>
+
+    <nav id="main-navbar" class="navbar fixed-top navbar-dark shadow">
+      <div class="d-flex flex-row align-items-center w-100">
+        <div id="nav-back" class="navbar-button rounded-circle" hidden><i class="fa fa-chevron-left text-light" aria-hidden="true"></i></div>
+        <button id="sidebarCollapse" class="btn rounded-circle navbar-button">
+          <span class="line"></span>
+          <span class="line"></span>
+          <span class="line"></span>
+        </button>
+        <div id="nav-title" class="px-3 text-truncate text-light font-weight-bold h3">Cabinet</div>
+        <div id="nav-search" class="navbar-button rounded-circle ml-auto" hidden><i class="fa fa-search text-light" aria-hidden="true"></i></div>
+        <button id="navLogout" class="btn btn-lg btn-primary ml-auto">Log out</button>
+      </div>
+    </nav>
+
+    <nav id="selectors" class="fixed-top fixed-top-2 p-2 row no-gutters bg-light d-none shadow pb-2" style="margin-top: 65px;">
+      <div id="corpSel" class="sel-wrapper col p-1">
+        <select class="cc-sel custom-select-lg bg-light rounded-0 w-100" name="Profile" id="profile">
+        </select>
+      </div>
+      
+      <div id="audSel" class="sel-wrapper col p-1">
+        <select class="cc-sel custom-select-lg bg-light rounded-0 w-100" name="Audience" id="audience">
+          <option value="All">All</option>
+        </select>
+      </div>
+      <div id="searchArea" class="col p1" hidden>
+        <div class="d-flex">
+          <label for="search">
+            <div class="p-2 rounded-circle"><i class="fa fa-search text-dark" aria-hidden="true"></i></div>
+          </label>
+          <input id="search" placeholder="Поиск..." class="s-inp sel-wrapper w-100" autocomplete="off" type="text">
+        </div>
+      </div>
+    </nav>
+
+    <div id="upBDiv" class="d-none">
+        <button id="upBut" class="btn rounded-circle position-fixed">
+          <a>
+              <i class="fa fa-chevron-up text-light" aria-hidden="true"></i>
+          </a>
+        </button>
+    </div>
+
+    <div id="orderDiv" class="table table-hover conc" style="margin-top:70px; margin-bottom:70px;">
+        <div class="container">
+
+        </div>
+      </div>
+
+    <div id="historyDiv" class="table table-hover conc" style="margin-top:70px; margin-bottom:70px;">
+      <table id="orders" style="background: white; min-width: 35vw;">
+        <thead>
+          <tr id="tHeader">
+            <th id="thName" class="w-50" data-attrs="name" data-type="String">Order </th>
+            <th id="thStatus" data-attrs="status" data-type="String">Status </th>
+            <th id="thInfo" data-attrs="info" data-type="String">Info </th>
+          </tr>
+          <tr id="trProg">
+            <th class="p-0" colspan="3">
+              <div class="progress">
+                <div id="progressbar" class="progress-bar progress-bar-striped progress-bar-animated"></div>
+              </div>
+            </th>
+          </tr>
+        </thead>
+          <tbody id="orderBody">
+          </tbody>
+      </table>
+    </div>
+
+    <div id="dummyContent" class="justify-content-center align-items-center conc show" style="height: 100vh;">
+      <div class="h3">
+        Orders placed here!
+      </div>
+    </div>
+
+  </div>
+  
+  <footer class="fixed-bottom bg-light p-3 w-100">
+    
+    <div class="overlay active"></div>
+    <div>
+        &copy; 2019
+    </div>
+  </footer>
+  
+  <script src="js/vendor/modernizr-3.7.1.min.js"></script>
+  <script src="js/vendor/jquery-3.3.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="js/plugins.js"></script>
+  <script src="js/cabinet.js"></script>
+</body>
+
+</html>

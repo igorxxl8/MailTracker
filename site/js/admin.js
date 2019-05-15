@@ -1,15 +1,17 @@
 (() => {
+    
     controller(getApi())
-
+    
     function getApi(){
-        const fetchGet = async(url) => await(await fetch(url)).json();
+        const ajaxJsonRequest = (url, onSuccess) => $.getJSON(url, onSuccess);
         return {
-            getCorpses:    () => fetchGet('https://lyceumexams.herokuapp.com/api/corpses'),
-            getDictionary: () => fetchGet('https://lyceumexams.herokuapp.com/api/dictionary'),
-            getStudents:   (corps = "", place = "") => fetchGet(`https://lyceumexams.herokuapp.com/api/pupils?corps=${corps}&place=${place}`)
+            getCorpses:    (onSuccess) => ajaxJsonRequest('https://lyceumexams.herokuapp.com/api/corpses', onSuccess),
+            getDictionary: (onSuccess) => ajaxJsonRequest('https://lyceumexams.herokuapp.com/api/dictionary', onSuccess),
+            getStudents:   (onSuccess, corps = "", place = "") => ajaxJsonRequest(`https://lyceumexams.herokuapp.com/api/pupils?corps=${corps}&place=${place}`, onSuccess)
         }
     }
 
+    
     function controller(api) {
         var students = [];
         var filtered = [];
@@ -17,10 +19,11 @@
         var studentsTable = document.getElementById("students");
         var audiencesTable = document.getElementById("audiences");
         var corpsesSelector = document.getElementById("building");
-
-        api.getDictionary().then(onDictionaryGet);
-        api.getCorpses().then(onCorpsesGet);
+        
+        api.getDictionary(onDictionaryGet);
+        api.getCorpses(onCorpsesGet);
         init();
+        
         
         function onCorpsesGet(corpsesData){
             corpses = corpsesData;
@@ -37,14 +40,12 @@
             filtered = students;
             fillStudentsTable(studentsTable, students);
         }
-
+        
+        
+        
         function init(){
             var placeSelector = document.getElementById("profile");
             var audienceSelector = document.getElementById("audience");
-            var serchTextField = document.getElementById("search");
-            var tHeader = document.getElementById("tHeader");
-            var saveButton = document.getElementById("save");
-            var lastSave = document.getElementById("last-save");
             var currentDroppable;
             var selectedCorps;
             var shouldSwitch;
@@ -52,43 +53,38 @@
             var audBody;
             var attrs;
             var asc;
+            
+            
 
-            saveButton.onclick = () => {
-                lastSave.innerHTML = new Date().toLocaleString('ru-Ru');
-            }
-
-            corpsesSelector.onchange = event =>
-            {
+            $("#building").change(event => {
                 if (corpsesSelector.options[0].text == ""){
                     corpsesSelector.options[0] = null;
                 }
                 selectedCorps = corpses[event.target.value];
                 fillSelector(placeSelector, selectedCorps.places, "code", "Все")
                 placeSelector.dispatchEvent(new Event('change'));
-                serchTextField.value = '';
-            }
+                $("#search").html('');
+            })
 
-            placeSelector.onchange = event => 
-            {
+
+
+            $("#profile").change(event => {
                 var index = event.target.value;
                 var audiences = [];
-                var stud;
                 if (index == Number.MAX_SAFE_INTEGER){
                     for (item of selectedCorps.places){
                         audiences = audiences.concat(item.audience);
                     }
-                    stud = api.getStudents(selectedCorps.alias);
+                    api.getStudents(onStudentsGet, selectedCorps.alias);
                 } else{
                     audiences = selectedCorps.places[index].audience;
-                    stud = api.getStudents(selectedCorps.alias, selectedCorps.places[index]._id);
+                    api.getStudents(onStudentsGet, selectedCorps.alias, selectedCorps.places[index]._id);
                 }
-                stud.then(onStudentsGet);
                 fillSelector(audienceSelector, audiences, "name", "Все");
                 audBody = fillAudiencesTable(audiencesTable, audiences);
-            }
+            })
 
-            audienceSelector.onchange = () => 
-            {
+            $('#audience').change ((event) => {
                 filtered = students;
                 var index = event.target.selectedIndex;
                 if (index != 0){
@@ -96,41 +92,39 @@
                     filtered = students.filter(s => Mapper.audience(s.audience) === audience)
                 }
                 fillStudentsTable(studentsTable, filtered);
-            }  
+            });
 
-            serchTextField.oninput = () => 
-            {
-                    var text = (event.target.value).replace(/ /g, '').toLowerCase();
-                    var temp = filtered.filter(s => (s.firstName + s.lastName + s.parentName).toLowerCase().includes(text));
-                    fillStudentsTable(studentsTable, temp);
-            }
+            $("#search").on('input', () => {
+                var text = (event.target.value).replace(/ /g, '').toLowerCase();
+                var temp = filtered.filter(s => (s.firstName + s.lastName + s.parentName).toLowerCase().includes(text));
+                fillStudentsTable(studentsTable, temp);
+            })
             
-            tHeader.onclick = () =>
-            {
-                    var dataset = event.target.dataset;
-                    shouldSwitch = attrs != dataset.attrs;
-                    if (shouldSwitch){
-                        asc = 1;
-                    }
+            $("#tHeader").click (() => {
+                var dataset = event.target.dataset;
+                shouldSwitch = attrs != dataset.attrs;
+                if (shouldSwitch){
+                    asc = 1;
+                }
 
-                    attrs = dataset.attrs;
-                    
-                    if (!shouldSwitch){
-                        asc *= -1;
-                    }
-                    sortData(students, asc, attrs, dataset.type);
-                    fillStudentsTable(studentsTable, students);
-                    appendArrow(asc);
-            }
+                attrs = dataset.attrs;
+                
+                if (!shouldSwitch){
+                    asc *= -1;
+                }
+                sortData(students, asc, attrs, dataset.type);
+                fillStudentsTable(studentsTable, students);
+                appendArrow(asc);
+            })
 
-            document.onmousedown = (e) => {
+            $(document).mousedown ((e) => {
                 var drag = e.target.closest('.drag');
                 if (!drag) return;
                 dragRow = createTempRow(drag, e);
                 studentsTable.tBodies[0].appendChild(dragRow);
-            }
+            })
 
-            document.onmouseup = () => {
+            $(document).mouseup (() => {
                 if (!dragRow) return;
                 studentsTable.tBodies[0].removeChild(dragRow);
                 audBody.className = '';
@@ -141,9 +135,9 @@
                     var newQuantity = +currentDroppable.children[1].innerHTML + 1;
                     console.log('Новая аудитория: ' + newAudience + ', новое количество: ' + newQuantity);
                 }
-            }
+            })
 
-            document.onmousemove = (e) => {
+            $(document).mousemove ((e) => {
                 if (!dragRow) return;
                 if (!audBody.className){
                     audBody.className = 'drop';
@@ -167,6 +161,23 @@
                 if (currentDroppable) {
                     currentDroppable.classList.add('drop-el-in');
                 }
+            })
+
+            $('#saveReport').click(()=>{
+                var date = new Date().toLocaleString('ru-Ru');
+                api.getStudents((data)=>{
+                    var json = JSON.stringify(data);
+                    writeToDisk(json, `${date}.json`, 'text/plain');
+                })
+                $("#last-save").html(date);
+            });
+
+            function writeToDisk(text, name, type) {
+                var a = document.getElementById("saveUrl");
+                var file = new Blob([text], {type: type});
+                a.href = URL.createObjectURL(file);
+                a.download = name;
+                a.click();
             }
         }
     }
@@ -210,14 +221,8 @@
     }
 
     function deleteArrow(){
-        var arrowUp = document.getElementsByClassName('arrow-up')[0];
-        var arrowDown= document.getElementsByClassName('arrow-down')[0];
-        if (arrowUp != null){
-            arrowUp.className = "";
-        }
-        if (arrowDown != null){
-            arrowDown.className = "";
-        }
+        $('tr').toggle('arrow-up');
+        $('tr').toggle('arrow-down');
     }
 
     function appendArrow(asc){
@@ -289,10 +294,10 @@ class Convertible {
     constructor(value, attrs) {
         var _value = value;
         var _attrs = attrs.split('|');
-        var _convert = (init, parseMethod) => {
+        var _convert = (init, method) => {
             var result = init;
             _attrs.forEach(element => {
-                result += parseMethod(Mapper.map(element)(_value[element]));
+                result += method(Mapper.map(element)(_value[element]));
             });
             return result;
         };

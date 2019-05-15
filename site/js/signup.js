@@ -1,6 +1,7 @@
 (() => {
     $('#signup').click( () => {
         $('.hidden').toggle();
-        $('#signup').html("Sign up")
+        $('#signup').html("Зарегестрироваться")
+        $('#hint').html("Дополните данные аккаунта")
     })
 })();

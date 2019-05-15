@@ -23,30 +23,29 @@
     <nav class="main-nav">
       <ul>
         <li>
-            <a href="#">Главная</a>
+            <a href="./admin.html">
+              <button class="btn-blue" style="margin:0">Обновить</button>
+            </a>
         </li>
 
         <li>
-          <a href="#">Списки</a>
+          <a href="./app.html">
+            <button class="btn-blue" style="margin:0">Детали</button>
+          </a>
         </li>
 
         <li>
-          <a href="#">Загрузка начальных данных</a>
+          <a id="saveUrl" href=''></a>
+          <button id="saveReport" class="btn-green" style="margin:0">Сохранить</button>
         </li>
       </ul>
     </nav>
   </header>
   <section class="container">
-    <div class="row column-layout">
-      <div class="col-eq">
-        <button id="save" class="btn-green">Сохранить изменения</button>
-      </div>
-      
-      <div class="col-eq">
+    <div class="col-eq">
         <p>Дата последнего сохранения:
           <b id="last-save"></b>
         </p>
-      </div>
     </div>
     
     <div class="form-pan sticky-top row column-layout">
